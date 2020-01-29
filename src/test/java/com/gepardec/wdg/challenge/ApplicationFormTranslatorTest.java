@@ -24,13 +24,12 @@ class ApplicationFormTranslatorTest {
 
     private static final String ACCESS_TOKEN = "ACCESS_TOKEN";
     private static final String COMPANY_ID = "COMPANY_ID";
-    private static final String JOB_ID = "JOB_ID";
+    private static final Integer JOB_ID = 3;
 
     @BeforeEach
     void beforeEach() {
         when(personioConfiguration.getAccesstoken()).thenReturn(ACCESS_TOKEN);
         when(personioConfiguration.getCompanyId()).thenReturn(COMPANY_ID);
-        when(personioConfiguration.getJobPositionId()).thenReturn(JOB_ID);
     }
 
     @Test
@@ -80,6 +79,7 @@ class ApplicationFormTranslatorTest {
 
     private Answer buildValidAnswer() {
         final Answer answer = new Answer();
+        answer.setJobId(3);
         answer.setTitle("Ing.");
         answer.setFirstName("Thomas");
         answer.setLastName("Herzog");

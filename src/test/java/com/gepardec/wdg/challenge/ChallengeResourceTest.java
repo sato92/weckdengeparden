@@ -20,7 +20,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @QuarkusTest
-class ChallengeResourceTest {
+public class ChallengeResourceTest {
 
     @Test
     void list_withPOST_then404Returned() {
@@ -43,8 +43,15 @@ class ChallengeResourceTest {
     }
 
     @Test
-    void byId_withGETAndInvalidId_then400Returned() {
+    void byId_withGETAnBelowMin_then500Returned() {
         given().get("/challenge/0")
+                .then()
+                .statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+    }
+
+    @Test
+    void byId_withGETAndInvalidId_then400Returned() {
+        given().get("/challenge/7")
                 .then()
                 .statusCode(HttpStatus.SC_BAD_REQUEST);
     }
@@ -67,10 +74,19 @@ class ChallengeResourceTest {
     }
 
     @Test
-    void answer_withInvalidId_then400Returned() {
+    void answer_withInvalidId_then405Returned() {
         given().contentType(ContentType.JSON)
-                .post("/challenge/-1/answer")
-                .then().statusCode(HttpStatus.SC_BAD_REQUEST)
+                .post("/challenge/7/answer")
+                .then().statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED)
+                .body("success", equalTo(false))
+                .body("message", equalTo("The request was invalid due to constraint violations"));
+    }
+
+    @Test
+    void answer_withAnIdBelowMin_then500Returned() {
+        given().contentType(ContentType.JSON)
+                .post("/challenge/-10/answer")
+                .then().statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED)
                 .body("success", equalTo(false))
                 .body("message", equalTo("The request was invalid due to constraint violations"));
     }

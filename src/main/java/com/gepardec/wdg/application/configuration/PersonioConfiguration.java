@@ -14,7 +14,7 @@ public class PersonioConfiguration {
     String accesstoken;
 
     @ConfigProperty(name = "personio.default.job_position_id")
-    String jobPositionId;
+    Integer jobPositionId;
 
     public String getCompanyId() {
         return companyId;
@@ -24,7 +24,7 @@ public class PersonioConfiguration {
         return accesstoken;
     }
 
-    public String getJobPositionId() {
+    public Integer getJobPositionId() {
         return jobPositionId;
     }
 }

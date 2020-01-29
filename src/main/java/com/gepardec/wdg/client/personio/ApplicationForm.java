@@ -20,7 +20,7 @@ public class ApplicationForm implements Serializable {
 
     @FormParam("job_position_id")
     @PartType(MediaType.TEXT_PLAIN)
-    private String jobPositionId;
+    private Integer jobPositionId;
 
     @FormParam("title")
     @PartType(MediaType.TEXT_PLAIN)
@@ -86,11 +86,11 @@ public class ApplicationForm implements Serializable {
         this.accessToken = accessToken;
     }
 
-    public String getJobPositionId() {
+    public Integer getJobPositionId() {
         return jobPositionId;
     }
 
-    public void setJobPositionId(String jobPositionId) {
+    public void setJobPositionId(Integer jobPositionId) {
         this.jobPositionId = jobPositionId;
     }
 
