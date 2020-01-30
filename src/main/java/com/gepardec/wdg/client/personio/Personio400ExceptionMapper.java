@@ -22,7 +22,7 @@ public class Personio400ExceptionMapper implements ResponseExceptionMapper<Perso
 
     private String readResponseErrorMessage(Response response) {
         try {
-            final PeronioErrorResponse errorResponse = response.readEntity(PeronioErrorResponse.class);
+            final PersonioErrorResponse errorResponse = response.readEntity(PersonioErrorResponse.class);
             return errorResponse.getError();
         } catch (Exception e) {
             return readResponseAsString(response);

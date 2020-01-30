@@ -1,3 +1,8 @@
+
+###
+
+
+###
 ## Get Challenges
 GET http://localhost:8080/challenge
 
@@ -23,12 +28,36 @@ Content-Type: application/json
 ### Provide invalid answer
 POST http://localhost:8080/challenge/1/answer
 Content-Type: application/json
-{ "jobId:"1",
-  "firstName": "TEST_Thomas",
-  "lastName": "TEST_Herzog",
-  "email": "herzog.thomas101@gmail.com",
-  "answer": "100",
-  "source": "MESSEN"
-  }
+
+{ "jobId" : 3,
+  "answer": "500",
+  "email": "john.doe@e.mail",
+  "firstName": "string",
+  "jobId": 0,
+  "lastName": "string",
+  "messageToGepardec": "string",
+  "otherSource": "string",
+  "phone": "string",
+  "source": "EMPFEHLUNG",
+  "title": "string"
+}
+
+### Provide valid answer
+
+POST http://localhost:8080/challenge/1/answer
+Content-Type: application/json
+
+{ "jobId" : 3,
+  "answer": "50",
+  "email": "john.doe@e.mail",
+  "firstName": "string",
+  "jobId": 0,
+  "lastName": "string",
+  "messageToGepardec": "string",
+  "otherSource": "string",
+  "phone": "string",
+  "source": "EMPFEHLUNG",
+  "title": "string"
+}
 
 ###

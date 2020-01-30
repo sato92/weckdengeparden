@@ -77,12 +77,10 @@ public class ChallengesResource {
             log.info("Wrong answer provided. challengeId={}, answer={}", challenge.getId(), answer.getAnswer());
             return Response.status(HttpStatus.SC_BAD_REQUEST).entity(BaseResponse.error(WRONG_ANSWER)).build();
         }
-
         log.info("Correct answer provided. challengeId={}", challenge.getId());
         final ApplicationForm applicationForm = ApplicationFormTranslator.answerToApplicationForm(personioConfiguration, answer);
         final String personioResponse = recruitingApi.createApplicant(applicationForm);
         log.info("ApplicationForm submitted. {}", personioResponse);
-
         return Response.ok(BaseResponse.success(CORRECT_ANSWER)).build();
     }
 

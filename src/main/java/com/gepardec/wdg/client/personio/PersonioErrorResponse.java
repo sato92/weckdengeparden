@@ -1,9 +1,9 @@
 package com.gepardec.wdg.client.personio;
 
-public class PeronioErrorResponse {
+public class PersonioErrorResponse {
     private String error;
 
-    public PeronioErrorResponse() {
+    public PersonioErrorResponse() {
     }
 
     public String getError() {
@@ -16,7 +16,7 @@ public class PeronioErrorResponse {
 
     @Override
     public String toString() {
-        return "PeronioErrorResponse{" +
+        return "PersonioErrorResponse{" +
                 "\nmessage='" + error + '\'' +
                 "\n}";
     }

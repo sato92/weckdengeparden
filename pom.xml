@@ -146,7 +146,7 @@
                             <goal>build</goal>
                         </goals>
                         <configuration>
-                            <uberJar>false</uberJar>
+                            <uberJar>true</uberJar>
                         </configuration>
                     </execution>
                 </executions>
