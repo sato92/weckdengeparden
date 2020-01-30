@@ -81,9 +81,9 @@ class ApplicationFormTranslatorTest {
         final Answer answer = new Answer();
         answer.setJobId(3);
         answer.setTitle("Ing.");
-        answer.setFirstName("Thomas");
-        answer.setLastName("Herzog");
-        answer.setEmail("thomas.herzog@gepardec.om");
+        answer.setFirstName("John");
+        answer.setLastName("Doe");
+        answer.setEmail("john.doe@e.mail");
         answer.setMessageToGepardec("This is my message");
         answer.setXingLink("http://xing.com");
         answer.setLinkedInLink("http://linkedin.com");

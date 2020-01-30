@@ -13,8 +13,9 @@
         <!-- Project properties -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
 
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- The revision property for CI-friendly builds -->
         <revision>0.0.1</revision>
 
@@ -24,7 +25,6 @@
         <quarkus.version>1.0.1.Final</quarkus.version>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <quarkus.package.uber.jar>false</quarkus.package.uber.jar>
     </properties>
 
     <dependencyManagement>
@@ -127,6 +127,16 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <compilerArgs>
+                        <arg>-Xlint:unchecked</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-maven-plugin</artifactId>
                 <version>${quarkus.version}</version>
@@ -136,7 +146,7 @@
                             <goal>build</goal>
                         </goals>
                         <configuration>
-                            <uberJar>${quarkus.package.uber.jar}</uberJar>
+                            <uberJar>false</uberJar>
                         </configuration>
                     </execution>
                 </executions>

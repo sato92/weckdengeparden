@@ -43,10 +43,10 @@ public class ChallengeResourceTest {
     }
 
     @Test
-    void byId_withGETAnBelowMin_then500Returned() {
+    void byId_withGETAnBelowMin_then400Returned() {
         given().get("/challenge/0")
                 .then()
-                .statusCode(HttpStatus.SC_INTERNAL_SERVER_ERROR);
+                .statusCode(HttpStatus.SC_BAD_REQUEST);
     }
 
     @Test
@@ -74,19 +74,19 @@ public class ChallengeResourceTest {
     }
 
     @Test
-    void answer_withInvalidId_then405Returned() {
+    void answer_withInvalidId_then400Returned() {
         given().contentType(ContentType.JSON)
                 .post("/challenge/7/answer")
-                .then().statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED)
+                .then().statusCode(HttpStatus.SC_BAD_REQUEST)
                 .body("success", equalTo(false))
                 .body("message", equalTo("The request was invalid due to constraint violations"));
     }
 
     @Test
-    void answer_withAnIdBelowMin_then500Returned() {
+    void answer_withAnIdBelowMin_then400Returned() {
         given().contentType(ContentType.JSON)
                 .post("/challenge/-10/answer")
-                .then().statusCode(HttpStatus.SC_METHOD_NOT_ALLOWED)
+                .then().statusCode(HttpStatus.SC_BAD_REQUEST)
                 .body("success", equalTo(false))
                 .body("message", equalTo("The request was invalid due to constraint violations"));
     }
@@ -141,9 +141,10 @@ public class ChallengeResourceTest {
         final Challenges challenges = Challenges.forId(challengeId)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("No challenge with id '%d' found", challengeId)));
         final Answer answer = new Answer();
-        answer.setFirstName("Thomas");
-        answer.setLastName("Herzog");
-        answer.setEmail("thomas.herzog@gepardec.om");
+        answer.setJobId(3);
+        answer.setFirstName("John");
+        answer.setLastName("Doe");
+        answer.setEmail("john.doe@e.mail");
         answer.setAnswer(challenges.getAnswer());
 
         return answer;

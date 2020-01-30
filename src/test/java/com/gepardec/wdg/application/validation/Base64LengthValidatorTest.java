@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 
 import javax.validation.Payload;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Array;
 import java.util.Base64;
+import java.util.Collection;
+import java.util.Collections;
 
 class Base64LengthValidatorTest {
 
@@ -86,7 +89,9 @@ class Base64LengthValidatorTest {
 
             @Override
             public Class<? extends Payload>[] payload() {
-                return new Class[0];
+                @SuppressWarnings("unchecked")
+                Class<? extends Payload>[] array = (Class[]) Array.newInstance(Class.class, 0);
+                return array;
             }
 
             @Override
